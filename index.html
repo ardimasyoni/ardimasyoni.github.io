@@ -1,505 +1,287 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Portfolio Website</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        /* === Global Styles === */
-        :root {
-            /* Light Mode Variables */
-            --bg-color: #f4f4f9;
-            --text-color: #333;
-            --primary-color: #00ccff;
-            --secondary-color: #ff0077;
-            --card-bg: #ffffff;
-            /* Dark Mode Variables */
-            --bg-dark: #1a1a2e;
-            --text-dark: #e0e0e0;
-            --card-dark: #16213e;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Portfolio Ku - 1995 Edition</title>
+  <style>
+    /* === CRT MONITOR EFFECT === */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #0a0a0a;
+      font-family: 'Courier New', monospace;
+      color: #bebebe;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      overflow: hidden;
+      image-rendering: pixelated;
+    }
 
-        /* Dark Mode */
-        .dark-mode {
-            --bg-color: var(--bg-dark);
-            --text-color: var(--text-dark);
-            --card-bg: var(--card-dark);
-        }
+    /* Monitor Bezel */
+    .monitor {
+      width: 900px;
+      height: 600px;
+      background: #1a1a1a;
+      border: 40px solid #2a2a2a;
+      border-radius: 20px;
+      box-shadow: 
+        0 0 20px #000,
+        inset 0 0 80px rgba(0, 255, 0, 0.1),
+        0 0 100px rgba(0, 0, 0, 0.8);
+      position: relative;
+      overflow: hidden;
+    }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
+    .screen {
+      width: 100%;
+      height: 100%;
+      background: #000;
+      position: relative;
+      overflow: hidden;
+      padding: 20px;
+    }
 
-        body {
-            background: var(--bg-color);
-            color: var(--text-color);
-            transition: all 0.5s ease;
-        }
+    /* Scanlines */
+    .scanlines {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.15),
+        rgba(0, 0, 0, 0.15) 1px,
+        transparent 1px,
+        transparent 2px
+      );
+      pointer-events: none;
+      z-index: 10;
+    }
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: var(--bg-color);
-        }
-        ::-webkit-scrollbar-thumb {
-            background: var(--primary-color);
-            border-radius: 4px;
-        }
+    /* Screen Curvature */
+    .screen::before {
+      content: '';
+      position: absolute;
+      top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: radial-gradient(circle, transparent 40%, rgba(0,0,0,0.3) 60%);
+      pointer-events: none;
+      z-index: 5;
+    }
 
-        /* === Loader Animation === */
-        .loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--bg-color);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            animation: fadeOut 1s forwards 2s;
-        }
-        .loader::before {
-            content: '';
-            width: 50px;
-            height: 50px;
-            border: 5px solid var(--primary-color);
-            border-top-color: transparent;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-        @keyframes spin {
-            100% { transform: rotate(360deg); }
-        }
-        @keyframes fadeOut {
-            100% { opacity: 0; visibility: hidden; }
-        }
+    /* === WINDOWS 95 UI === */
+    .window {
+      background: #c0c0c0;
+      border: 2px solid #dfdfdf;
+      border-left-color: #7b7b7b;
+      border-top-color: #7b7b7b;
+      border-right-color: #000;
+      border-bottom-color: #000;
+      box-shadow: 1px 1px 0 #000 inset, -1px -1px 0 #dfdfdf inset;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      z-index: 1;
+    }
 
-        /* === Navbar Styles === */
-        header {
-            position: sticky;
-            top: 0;
-            background: var(--card-bg);
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-            transition: background 0.3s ease;
-        }
-        nav {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 15px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        nav a {
-            color: var(--text-color);
-            text-decoration: none;
-            margin: 0 15px;
-            font-weight: 600;
-            transition: color 0.3s ease;
-        }
-        nav a:hover {
-            color: var(--primary-color);
-        }
-        .theme-toggle {
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--text-color);
-        }
+    .title-bar {
+      background: linear-gradient(to right, #000080, #1084d0);
+      color: white;
+      padding: 3px 6px;
+      font-weight: bold;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 24px;
+      font-size: 12px;
+    }
 
-        /* === Hero Section === */
-        #home {
-            height: 100vh;
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        #home::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, rgba(0, 204, 255, 0.5), rgba(255, 0, 119, 0.5));
-            animation: gradientShift 10s ease infinite;
-        }
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        .hero-content h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            animation: fadeInUp 1s ease;
-        }
-        .hero-content p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-            animation: fadeInUp 1.2s ease;
-        }
-        .cta-button {
-            padding: 15px 30px;
-            background: var(--primary-color);
-            color: #fff;
-            border: none;
-            border-radius: 25px;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        .cta-button:hover {
-            transform: scale(1.1);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        }
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+    .title-bar button {
+      width: 16px; height: 14px;
+      margin-left: 2px;
+      border: 1px solid #000;
+      background: #c0c0c0;
+      font-size: 10px;
+      cursor: pointer;
+    }
 
-        /* === About Section === */
-        #about {
-            padding: 80px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        #about h2 {
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 40px;
-        }
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-        }
-        .skill-card {
-            background: var(--card-bg);
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-            transition: transform 0.3s;
-        }
-        .skill-card:hover {
-            transform: translateY(-10px);
-        }
-        .progress-bar {
-            height: 10px;
-            background: #ddd;
-            border-radius: 5px;
-            overflow: hidden;
-            margin-top: 10px;
-        }
-        .progress-bar span {
-            display: block;
-            height: 100%;
-            background: var(--primary-color);
-            width: 0;
-            animation: fillBar 2s ease forwards;
-        }
-        @keyframes fillBar {
-            to { width: 100%; }
-        }
+    .title-bar button:active { background: #7b7b7b; }
 
-        /* === Projects Section === */
-        #projects {
-            padding: 80px 20px;
-            background: var(--card-bg);
-        }
-        #projects h2 {
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 40px;
-        }
-        .filter-buttons {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        .filter-buttons button {
-            padding: 10px 20px;
-            margin: 5px;
-            border: none;
-            background: var(--primary-color);
-            color: #fff;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .project-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .project-card {
-            background: var(--card-bg);
-            border-radius: 10px;
-            overflow: hidden;
-            transition: transform 0.3s;
-            position: relative;
-        }
-        .project-card:hover {
-            transform: scale(1.05);
-        }
-        .project-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-        .project-card h3 {
-            padding: 15px;
-            font-size: 1.5rem;
-        }
-        .project-card p {
-            padding: 0 15px 15px;
-        }
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            justify-content: center;
-            align-items: center;
-            z-index: 2000;
-        }
-        .modal-content {
-            background: var(--card-bg);
-            padding: 20px;
-            border-radius: 10px;
-            max-width: 600px;
-            animation: slideIn 0.5s ease;
-        }
-        @keyframes slideIn {
-            from { transform: translateY(-50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-        .modal:target {
-            display: flex;
-        }
+    /* Menu Bar */
+    .menu-bar {
+      background: #c0c0c0;
+      border-bottom: 1px solid #7b7b7b;
+      padding: 2px 4px;
+      font-size: 11px;
+    }
 
-        /* === Contact Section === */
-        #contact {
-            padding: 80px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        #contact h2 {
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 40px;
-        }
-        .contact-form {
-            display: grid;
-            gap: 20px;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        .contact-form input, .contact-form textarea {
-            padding: 15px;
-            border: 2px solid var(--primary-color);
-            border-radius: 5px;
-            background: var(--card-bg);
-            color: var(--text-color);
-        }
-        .contact-form input:focus, .contact-form textarea:focus {
-            outline: none;
-            border-color: var(--secondary-color);
-        }
-        .contact-form button {
-            padding: 15px;
-            background: var(--primary-color);
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .contact-form button:hover {
-            background: var(--secondary-color);
-        }
-        .map {
-            margin-top: 40px;
-            text-align: center;
-        }
-        .social-icons {
-            text-align: center;
-            margin-top: 20px;
-        }
-        .social-icons a {
-            color: var(--text-color);
-            font-size: 1.5rem;
-            margin: 0 10px;
-            transition: color 0.3s;
-        }
-        .social-icons a:hover {
-            color: var(--primary-color);
-        }
+    .menu-bar span {
+      margin-right: 15px;
+      cursor: pointer;
+    }
 
-        /* === Footer === */
-        footer {
-            padding: 20px;
-            background: var(--card-bg);
-            text-align: center;
-        }
-        footer a {
-            color: var(--text-color);
-            margin: 0 10px;
-            text-decoration: none;
-        }
-        footer a:hover {
-            color: var(--primary-color);
-        }
+    /* Content */
+    .content {
+      background: #000;
+      color: #00ff00;
+      padding: 15px;
+      flex: 1;
+      overflow-y: auto;
+      font-size: 14px;
+      line-height: 1.6;
+    }
 
-        /* === Responsive Design === */
-        @media (max-width: 1200px) {
-            .hero-content h1 { font-size: 2.5rem; }
-            .project-grid { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
-        }
-        @media (max-width: 768px) {
-            nav { flex-direction: column; }
-            nav a { margin: 10px 0; }
-            .hero-content h1 { font-size: 2rem; }
-            .project-grid { grid-template-columns: 1fr; }
-        }
-    </style>
+    .content h1 {
+      color: #00ff00;
+      text-shadow: 0 0 5px #00ff00;
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+
+    .content p {
+      margin-bottom: 12px;
+    }
+
+    .content a {
+      color: #00ffff;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    .content a:hover {
+      color: #ffff00;
+      text-shadow: 0 0 3px #ffff00;
+    }
+
+    /* Taskbar */
+    .taskbar {
+      background: #c0c0c0;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      padding: 0 5px;
+      border-top: 1px solid #dfdfdf;
+      font-size: 11px;
+    }
+
+    .start-btn {
+      background: #c0c0c0;
+      border: 1px solid #dfdfdf;
+      border-left-color: #7b7b7b;
+      border-top-color: #7b7b7b;
+      padding: 2px 8px;
+      font-weight: bold;
+      margin-right: 10px;
+    }
+
+    .start-btn:active {
+      border-left-color: #dfdfdf;
+      border-top-color: #dfdfdf;
+      border-right-color: #7b7b7b;
+      border-bottom-color: #7b7b7b;
+    }
+
+    .clock {
+      margin-left: auto;
+      background: #c0c0c0;
+      padding: 2px 6px;
+      border: 1px solid #7b7b7b;
+    }
+
+    /* Icons */
+    .icon {
+      display: inline-block;
+      width: 32px;
+      height: 32px;
+      margin: 5px;
+      background: #000;
+      border: 1px solid #00ff00;
+      text-align: center;
+      font-size: 10px;
+      color: #00ff00;
+      padding-top: 8px;
+    }
+
+    /* Blinking Cursor */
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+    .blink {
+      animation: blink 1s steps(1) infinite;
+    }
+  </style>
 </head>
 <body>
-    <!-- Loader -->
-    <div class="loader"></div>
+  <div class="monitor">
+    <div class="screen">
+      <!-- Scanlines Overlay -->
+      <div class="scanlines"></div>
 
-    <!-- Navbar -->
-    <header>
-        <nav>
-            <div class="nav-links">
-                <a href="#home">Home</a>
-                <a href="#about">About</a>
-                <a href="#projects">Projects</a>
-                <a href="#contact">Contact</a>
-            </div>
-            <button class="theme-toggle" onclick="document.body.classList.toggle('dark-mode')">
-                <i class="fas fa-moon"></i>
-            </button>
-        </nav>
-    </header>
+      <div class="window">
+        <!-- Title Bar -->
+        <div class="title-bar">
+          <span>🖥️ Portfolio Ku - 1995 Edition</span>
+          <div>
+            <button>−</button>
+            <button>□</button>
+            <button>×</button>
+          </div>
+        </div>
 
-    <!-- Home Section -->
-    <section id="home">
-        <div class="hero-content">
-            <h1>Welcome to My Portfolio</h1>
-            <p>Creative Developer | Building the Future One Line at a Time</p>
-            <button class="cta-button">Explore My Work</button>
+        <!-- Menu Bar -->
+        <div class="menu-bar">
+          <span>File</span>
+          <span>Edit</span>
+          <span>View</span>
+          <span>Help</span>
         </div>
-    </section>
 
-    <!-- About Section -->
-    <section id="about">
-        <h2>About Me</h2>
-        <p style="text-align: center; max-width: 800px; margin: 0 auto 40px;">
-            I'm a passionate developer with expertise in web and mobile applications. 
-            I love creating intuitive and beautiful solutions.
-        </p>
-        <div class="skills-grid">
-            <div class="skill-card">
-                <h3>HTML & CSS</h3>
-                <div class="progress-bar"><span style="width: 90%;"></span></div>
-            </div>
-            <div class="skill-card">
-                <h3>JavaScript</h3>
-                <div class="progress-bar"><span style="width: 85%;"></span></div>
-            </div>
-            <div class="skill-card">
-                <h3>React</h3>
-                <div class="progress-bar"><span style="width: 80%;"></span></div>
-            </div>
-        </div>
-    </section>
+        <!-- Content -->
+        <div class="content">
+          <h1>WELCOME TO MY PORTFOLIO<span class="blink">_</span></h1>
+          <p><strong>&gt; NAMA:</strong> [Ganti Nama Kamu]</p>
+          <p><strong>&gt; SKILL:</strong> HTML, CSS, JavaScript, MikroTik, Retro UI Design</p>
+          <p><strong>&gt; PROYEK:</strong></p>
+          <ul>
+            <li><a href="#">Hotspot Login Page - Cafe 90s</a></li>
+            <li><a href="#">Winbox Dark Theme Hack</a></li>
+            <li><a href="#">Geocities Revival 2025</a></li>
+          </ul>
+          <p><strong>&gt; KONTAK:</strong> <a href="mailto:kamu@retro.net">kamu@retro.net</a></p>
+          
+          <div style="margin-top: 20px;">
+            <div class="icon">📄</div>
+            <div class="icon">💾</div>
+            <div class="icon">🖼️</div>
+            <div class="icon">🎮</div>
+          </div>
 
-    <!-- Projects Section -->
-    <section id="projects">
-        <h2>My Projects</h2>
-        <div class="filter-buttons">
-            <button>All</button>
-            <button>Web</button>
-            <button>Mobile</button>
-            <button>Design</button>
+          <p style="margin-top: 20px; font-size: 12px; color: #008000;">
+            * Running on Windows 95 Simulator * 640K RAM * 28.8kbps Modem *
+          </p>
         </div>
-        <div class="project-grid">
-            <!-- Sample Project Card 1 -->
-            <div class="project-card">
-                <img src="https://via.placeholder.com/300x200" alt="Project 1">
-                <h3>Project 1: E-Commerce Site</h3>
-                <p>A responsive online store with payment integration.</p>
-                <a href="#project1-modal">View Details</a>
-            </div>
-            <div id="project1-modal" class="modal">
-                <div class="modal-content">
-                    <h3>Project 1 Details</h3>
-                    <p>Built with HTML, CSS, and modern frameworks.</p>
-                    <a href="#projects">Close</a>
-                </div>
-            </div>
-            <!-- Sample Project Card 2 -->
-            <div class="project-card">
-                <img src="https://via.placeholder.com/300x200" alt="Project 2">
-                <h3>Project 2: Mobile App</h3>
-                <p>A cross-platform app for task management.</p>
-                <a href="#project2-modal">View Details</a>
-            </div>
-            <div id="project2-modal" class="modal">
-                <div class="modal-content">
-                    <h3>Project 2 Details</h3>
-                    <p>Developed using Flutter with Firebase backend.</p>
-                    <a href="#projects">Close</a>
-                </div>
-            </div>
-            <!-- Add 18 more project cards here to scale -->
-        </div>
-    </section>
 
-    <!-- Contact Section -->
-    <section id="contact">
-        <h2>Contact Me</h2>
-        <form class="contact-form">
-            <input type="text" placeholder="Name" required>
-            <input type="email" placeholder="Email" required>
-            <textarea placeholder="Message" rows="5" required></textarea>
-            <button type="submit">Send Message</button>
-        </form>
-        <div class="map">
-            <iframe src="https://www.google.com/maps/embed?pb=" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        <!-- Taskbar -->
+        <div class="taskbar">
+          <button class="start-btn">Start</button>
+          <span>Portfolio.exe</span>
+          <div class="clock" id="clock">12:00 AM</div>
         </div>
-        <div class="social-icons">
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-linkedin"></i></a>
-            <a href="#"><i class="fab fa-github"></i></a>
-        </div>
-    </section>
+      </div>
+    </div>
+  </div>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2025 My Portfolio. All rights reserved.</p>
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
-    </footer>
+  <!-- Real-time Clock -->
+  <script>
+    function updateClock() {
+      const now = new Date();
+      const time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      document.getElementById('clock').textContent = time;
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+  </script>
 </body>
 </html>
