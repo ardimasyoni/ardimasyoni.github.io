@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Ardimas Yonifandria Putra — Portfolio</title>
+  <meta name="description" content="Portfolio Ardimas Yonifandria Putra — Network & IT Enthusiast" />
+  <style>
+    /* ---------- Variables ---------- */
+    :root{
+      --bg: #ffffff;
+      --muted: #f3f4f6;
+      --card: #fbfdff;
+      --text: #0f172a;
+      --muted-text:#5b6770;
+      --accent: #cfe8ff; /* light pastel blue */
+      --accent-2: #bfe0ff;
+      --glass: rgba(255,255,255,0.6);
+      --radius: 14px;
+      --shadow: 0 6px 20px rgba(16,24,40,0.08);
+      --ease: cubic-bezier(.2,.9,.25,1);
+    }
+
+    /* ---------- Base ---------- */
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg, var(--bg) 0%, #fbfdff 100%);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.5;
+      scroll-behavior:smooth;
+    }
+    a{color:inherit; text-decoration:none}
+
+    /* ---------- Container ---------- */
+    .container{max-width:1050px; margin:0 auto; padding:28px;}
+
+    /* ---------- Header / Nav ---------- */
+    header{
+      position:sticky; top:10px; z-index:40;
+      background: linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.35));
+      backdrop-filter: blur(6px);
+      margin-bottom:18px;
+      border-radius:12px;
+      box-shadow: var(--shadow);
+    }
+    .nav-inner{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:10px 18px;}
+    .brand{display:flex; gap:12px; align-items:center}
+    .brand .logo{
+      width:44px; height:44px; border-radius:10px; display:grid; place-items:center;
+      background:linear-gradient(135deg,var(--accent),var(--accent-2));
+      box-shadow: 0 4px 14px rgba(95,140,255,0.08);
+      font-weight:700; color:var(--text);
+    }
+    nav ul{display:flex; gap:12px; list-style:none; margin:0; padding:0; align-items:center}
+    nav li a{
+      padding:8px 10px; border-radius:10px; color:var(--muted-text); font-weight:600; font-size:14px;
+      transition: all .25s var(--ease);
+    }
+    nav li a:hover, nav li a.active{
+      background:var(--accent); color:var(--text); transform:translateY(-2px);
+      box-shadow: 0 6px 18px rgba(30,90,160,0.06);
+    }
+    .cta {
+      padding:8px 12px; border-radius:10px; background:var(--accent-2); font-weight:700;
+      box-shadow: 0 6px 18px rgba(34,90,170,0.06);
+      transition: transform .18s var(--ease);
+    }
+    .cta:hover{transform:translateY(-3px)}
+
+    /* ---------- Hero ---------- */
+    .hero{
+      display:grid;
+      grid-template-columns: 1fr 360px;
+      gap:28px;
+      align-items:center;
+      margin:28px 0 40px;
+    }
+    .hero .intro h1{
+      margin:0 0 8px; font-size: clamp(28px, 3.6vw, 40px); letter-spacing:-0.4px;
+    }
+    .hero .intro p{margin:0 0 18px; color:var(--muted-text)}
+    .profile{
+      width:320px; max-width:100%; margin:auto;
+      display:flex; align-items:center; justify-content:center; gap:16px;
+      padding:18px; border-radius:16px; background:linear-gradient(180deg, rgba(255,255,255,0.9), rgba(250,252,255,0.9));
+      box-shadow: var(--shadow);
+      transition: transform .28s var(--ease), box-shadow .28s var(--ease);
+    }
+    .profile:hover{transform:translateY(-6px); box-shadow:0 18px 40px rgba(12,28,84,0.08)}
+    .avatar{
+      width:96px; height:96px; border-radius:999px; flex-shrink:0;
+      display:grid; place-items:center; font-weight:700; font-size:26px;
+      background:linear-gradient(135deg,#e8f6ff,#d4ecff);
+      box-shadow: 0 8px 20px rgba(60,120,200,0.06);
+      border: 1px solid rgba(0,0,0,0.04);
+    }
+    .meta{text-align:left}
+    .meta .title{font-weight:700; margin:0}
+    .meta .subtitle{color:var(--muted-text); margin-top:6px; font-size:14px}
+
+    /* ---------- Sections ---------- */
+    section{margin:24px 0; padding:20px; border-radius:12px}
+    .panel{
+      background:var(--card); border-radius:12px; padding:22px; box-shadow: var(--shadow);
+      transition: transform .3s var(--ease), opacity .35s var(--ease);
+      opacity:0; transform: translateY(12px);
+    }
+    .panel.visible{opacity:1; transform:none}
+
+    /* About */
+    .about p{margin:0; color:var(--muted-text)}
+
+    /* Projects */
+    .projects-grid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:16px;
+      margin-top:12px;
+    }
+    .card{
+      border-radius:12px; padding:16px; background:linear-gradient(180deg, rgba(255,255,255,0.9), rgba(247,250,255,0.9));
+      box-shadow: 0 8px 24px rgba(16,24,40,0.04); cursor:pointer;
+      transition: transform .24s var(--ease), box-shadow .24s var(--ease);
+      border: 1px solid rgba(15,23,42,0.03);
+    }
+    .card:hover{transform:translateY(-8px); box-shadow: 0 18px 40px rgba(16,32,96,0.06)}
+    .card h3{margin:0 0 8px; font-size:16px}
+    .card p{margin:0; font-size:13px; color:var(--muted-text)}
+    .card .tags{margin-top:10px; display:flex; gap:8px; flex-wrap:wrap}
+    .tag{font-size:12px; padding:6px 8px; border-radius:999px; background:var(--muted); color:var(--muted-text)}
+
+    /* Contact */
+    .contact-form{display:flex; flex-direction:column; gap:12px; max-width:520px}
+    .input, textarea{
+      padding:12px 14px; border-radius:10px; border:1px solid rgba(15,23,42,0.06);
+      background: #fff; font-size:14px; resize:vertical;
+      transition: box-shadow .18s var(--ease), transform .18s var(--ease);
+    }
+    .input:focus, textarea:focus{outline:none; box-shadow:0 8px 24px rgba(30,90,160,0.06); transform:translateY(-2px)}
+    .btn{
+      padding:10px 14px; border-radius:10px; border:none; font-weight:700; cursor:pointer;
+      background: linear-gradient(90deg,var(--accent-2),var(--accent)); box-shadow:0 10px 24px rgba(20,80,170,0.08);
+    }
+
+    /* Footer */
+    footer{margin-top:24px; text-align:center; color:var(--muted-text); font-size:13px; padding:24px 0}
+
+    /* ---------- Modal ---------- */
+    .modal-backdrop{
+      position:fixed; inset:0; display:none; place-items:center; z-index:80;
+      background: rgba(8,12,24,0.45); padding:20px;
+    }
+    .modal-backdrop.open{display:grid}
+    .modal{
+      width:100%; max-width:720px; background:white; border-radius:12px; padding:18px; box-shadow:0 30px 80px rgba(2,8,23,0.5);
+      transform:translateY(18px); opacity:0; transition: all .28s var(--ease);
+    }
+    .modal-backdrop.open .modal{transform:none; opacity:1}
+
+    /* ---------- Responsive ---------- */
+    @media (max-width:980px){
+      .hero{grid-template-columns: 1fr; text-align:center}
+      .profile{flex-direction:column}
+      nav ul{display:none}
+      .nav-inner{gap:8px}
+    }
+    @media (max-width:720px){
+      .projects-grid{grid-template-columns:1fr}
+    }
+
+    /* small animations */
+    .fade-in{animation: fadeIn .6s var(--ease) both}
+    @keyframes fadeIn{
+      from{opacity:0; transform: translateY(8px)}
+      to{opacity:1; transform:none}
+    }
+
+    /* helper */
+    .muted{color:var(--muted-text)}
+    .row{display:flex; gap:12px; align-items:center}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav-inner">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">AYP</div>
+        <div>
+          <div style="font-weight:700">Ardimas Y. Putra</div>
+          <div style="font-size:12px;color:var(--muted-text)">Network & IT Enthusiast</div>
+        </div>
+      </div>
+
+      <nav aria-label="Main navigation">
+        <ul>
+          <li><a href="#home" class="active">Home</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#blog">Blog</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div>
+        <a class="cta" href="#projects">Lihat Proyek</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- HERO -->
+    <section id="home" class="hero">
+      <div class="intro">
+        <h1>Halo, saya Ardimas Yonifandria Putra</h1>
+        <p>Network & IT Enthusiast — saya membuat tutorial, eksperimen jaringan, dan proyek kecil untuk belajar dan berbagi.</p>
+        <div class="row" style="margin-top:8px;">
+          <a class="btn" href="#contact" style="margin-right:8px">Kontak Saya</a>
+          <a href="#projects" style="padding:10px 12px; border-radius:10px; background:transparent; color:var(--muted-text); font-weight:600">Lihat Proyek →</a>
+        </div>
+      </div>
+
+      <div class="profile panel" style="opacity:1; transform:none">
+        <!-- Avatar SVG placeholder with initials -->
+        <div style="display:flex; gap:14px; align-items:center;">
+          <div class="avatar" aria-hidden="true">
+            <!-- Inline SVG as fallback decorative avatar (initials) -->
+            <svg width="72" height="72" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <defs>
+                <linearGradient id="g" x1="0" x2="1" y1="0" y2="1">
+                  <stop offset="0" stop-color="#e8f6ff"/>
+                  <stop offset="1" stop-color="#d4ecff"/>
+                </linearGradient>
+              </defs>
+              <rect rx="50" width="100" height="100" fill="url(#g)"/>
+              <text x="50" y="58" dominant-baseline="middle" text-anchor="middle" font-family="Inter, Arial" font-weight="700" font-size="42" fill="#0f172a">AY</text>
+            </svg>
+          </div>
+
+          <div class="meta">
+            <div class="title">Ardimas Yonifandria Putra</div>
+            <div class="subtitle">Network & IT Enthusiast</div>
+            <div style="margin-top:10px; color:var(--muted-text); font-size:13px">
+              Pacitan · Indonesia
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="panel about" aria-labelledby="about-heading">
+      <h2 id="about-heading">About Me</h2>
+      <p style="margin-top:10px">
+        Saya tertarik pada jaringan komputer, server, dan solusi sederhana yang dapat membantu orang. Saat ini saya belajar dan membuat proyek-proyek kecil yang berkaitan dengan NAS, server FTP, dan otomasi jaringan. Saya suka berbagi tutorial dan dokumentasi supaya orang lain juga bisa belajar.
+      </p>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="panel" aria-labelledby="projects-heading">
+      <h2 id="projects-heading">Projects</h2>
+      <p class="muted" style="margin-top:8px">Beberapa proyek kecil yang saya kerjakan — klik untuk lihat detail.</p>
+
+      <div class="projects-grid" style="margin-top:14px">
+        <!-- Card 1 -->
+        <article class="card" tabindex="0" data-title="NAS Sederhana dengan STB" data-desc="Konfigurasi NAS menggunakan STB HG680P, dua flashdisk, dan router. Tutorial langkah demi langkah serta troubleshooting." data-tags="NAS,STB,Storage">
+          <h3>NAS Sederhana dengan STB</h3>
+          <p>Panduan membuat NAS murah memakai STB HG680P untuk keperluan tugas akhir dan backup kecil.</p>
+          <div class="tags">
+            <span class="tag">NAS</span>
+            <span class="tag">STB</span>
+            <span class="tag">Guide</span>
+          </div>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="card" tabindex="0" data-title="FTP Server di Debian 12" data-desc="Server FTP yang dikonfigurasi di Debian 12 (VirtualBox). Termasuk setup pengguna, chroot, dan akses via HP." data-tags="FTP,Debian,VirtualBox">
+          <h3>FTP Server di Debian 12</h3>
+          <p>Setup FTP server untuk berbagi file antar perangkat, cocok untuk praktik dan uji kompetensi.</p>
+          <div class="tags">
+            <span class="tag">FTP</span>
+            <span class="tag">Debian</span>
+            <span class="tag">VirtualBox</span>
+          </div>
+        </article>
+
+        <!-- Card 3 -->
+        <article class="card" tabindex="0" data-title="RT/RW Net Plan" data-desc="Rencana usaha RT/RW Net: modal awal, peralatan (OLT), pemasaran, dan proyeksi pelanggan." data-tags="Business,OLT,ISP">
+          <h3>Rencana RT/RW Net</h3>
+          <p>Konsep usaha layanan internet lokal—perhitungan modal, perangkat utama, dan strategi penambahan pelanggan.</p>
+          <div class="tags">
+            <span class="tag">Business</span>
+            <span class="tag">OLT</span>
+            <span class="tag">ISP</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- BLOG placeholder -->
+    <section id="blog" class="panel" aria-labelledby="blog-heading">
+      <h2 id="blog-heading">Blog</h2>
+      <p class="muted" style="margin-top:8px">Saya menulis tutorial & catatan kecil — link blog akan muncul di sini nanti.</p>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="panel" aria-labelledby="contact-heading">
+      <h2 id="contact-heading">Contact</h2>
+      <p class="muted" style="margin-top:8px">Punya pertanyaan atau ingin kerja sama? Kirim email lewat form ini.</p>
+
+      <form id="contactForm" class="contact-form" onsubmit="return false;">
+        <input id="name" class="input" type="text" placeholder="Nama lengkap" required />
+        <input id="email" class="input" type="email" placeholder="Email kamu" required />
+        <textarea id="message" class="input" rows="6" placeholder="Tulis pesan singkat..." required></textarea>
+        <div style="display:flex; gap:10px; align-items:center">
+          <button id="sendBtn" class="btn" type="submit">Kirim Pesan</button>
+          <div id="formStatus" style="color:var(--muted-text); font-size:13px"></div>
+        </div>
+      </form>
+    </section>
+
+    <footer>
+      © 2025 Ardimas Yonifandria Putra
+    </footer>
+  </main>
+
+  <!-- Modal for project details -->
+  <div id="modalBackdrop" class="modal-backdrop" role="dialog" aria-hidden="true" aria-labelledby="modalTitle">
+    <div class="modal" role="document">
+      <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:12px">
+        <div>
+          <h3 id="modalTitle" style="margin:0">Project Title</h3>
+          <p id="modalTags" class="muted" style="margin:8px 0 0; font-size:13px">tags</p>
+        </div>
+        <button id="closeModal" aria-label="Close" style="background:transparent;border:none;font-size:20px;cursor:pointer">✕</button>
+      </div>
+      <div id="modalBody" style="margin-top:12px; color:var(--muted-text)"></div>
+      <div style="margin-top:18px; display:flex; gap:10px;">
+        <a id="viewRepo" class="btn" href="#" target="_blank" rel="noopener">Lihat Repositori</a>
+        <a id="viewDemo" href="#" style="padding:10px 12px; border-radius:10px; background:transparent; color:var(--muted-text); border:1px solid rgba(15,23,42,0.04)">Demo</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ---------- Simple JS for interactions ----------
+    (function(){
+      // nav active highlight (simple)
+      const navLinks = document.querySelectorAll('nav a');
+      navLinks.forEach(a => a.addEventListener('click', (e) => {
+        navLinks.forEach(x=>x.classList.remove('active'));
+        e.currentTarget.classList.add('active');
+      }));
+
+      // project modal
+      const cards = document.querySelectorAll('.card');
+      const modal = document.getElementById('modalBackdrop');
+      const modalTitle = document.getElementById('modalTitle');
+      const modalBody = document.getElementById('modalBody');
+      const modalTags = document.getElementById('modalTags');
+      const viewRepo = document.getElementById('viewRepo');
+      const viewDemo = document.getElementById('viewDemo');
+
+      cards.forEach(card => {
+        card.addEventListener('click', () => openModal(card));
+        card.addEventListener('keydown', (e) => { if(e.key === 'Enter') openModal(card); });
+      });
+
+      function openModal(card){
+        modalTitle.textContent = card.dataset.title || 'Project';
+        modalBody.textContent = card.dataset.desc || '';
+        modalTags.textContent = (card.dataset.tags || '').split(',').map(t => t.trim()).filter(Boolean).join(' • ');
+        // placeholder links
+        viewRepo.href = '#';
+        viewDemo.href = '#';
+        modal.classList.add('open');
+        modal.setAttribute('aria-hidden','false');
+        document.body.style.overflow = 'hidden';
+      }
+
+      document.getElementById('closeModal').addEventListener('click', closeModal);
+      modal.addEventListener('click', (e) => { if(e.target === modal) closeModal(); });
+      function closeModal(){
+        modal.classList.remove('open');
+        modal.setAttribute('aria-hidden','true');
+        document.body.style.overflow = '';
+      }
+
+      // contact form basic validation & fake send
+      const form = document.getElementById('contactForm');
+      const sendBtn = document.getElementById('sendBtn');
+      const status = document.getElementById('formStatus');
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const message = document.getElementById('message').value.trim();
+
+        if(!name || !email || !message){ status.textContent = 'Harap isi semua kolom.'; return; }
+        if(!validateEmail(email)){ status.textContent = 'Email tidak valid.'; return; }
+
+        // Simulate sending — replace with real endpoint if you have
+        sendBtn.disabled = true;
+        sendBtn.textContent = 'Mengirim...';
+        status.textContent = '';
+        setTimeout(() => {
+          sendBtn.disabled = false;
+          sendBtn.textContent = 'Kirim Pesan';
+          status.textContent = 'Pesan berhasil dikirim! Terima kasih.';
+          form.reset();
+        }, 900);
+      });
+
+      function validateEmail(email) {
+        // simple regex
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+      }
+
+      // Intersection observer to reveal panels
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if(entry.isIntersecting) entry.target.classList.add('visible', 'fade-in');
+        });
+      }, {threshold: 0.12});
+      document.querySelectorAll('.panel').forEach(el => observer.observe(el));
+
+      // keyboard escape to close modal
+      window.addEventListener('keydown', (e) => {
+        if(e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+      });
+
+      // Smooth small hover micro-motion for clickable elements (improve UX)
+      document.querySelectorAll('.card, .btn, .cta, nav a').forEach(el => {
+        el.addEventListener('mouseover', () => el.style.willChange = 'transform,opacity');
+        el.addEventListener('mouseout', () => el.style.willChange = 'auto');
+      });
+
+      // Accessibility: focus outlines on keyboard navigation
+      window.addEventListener('keydown', (e) => {
+        if(e.key === 'Tab') document.documentElement.style.scrollBehavior = 'smooth';
+      });
+    })();
+  </script>
+</body>
+</html>
