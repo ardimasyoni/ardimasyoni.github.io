@@ -2,993 +2,317 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ardimas Yonifandria Putra - IT Enthusiast Portfolio</title>
-    <meta name="description" content="Professional IT Engineer Portfolio - Ardimas Yonifandria Putra - Network & Home Server Hobbyist">
-    <meta name="keywords" content="IT Enthusiast, Network Hobbyist, Home Server, MikroTik, CasaOS, VirtualBox, NAS">
-    <meta name="author" content="Ardimas Yonifandria Putra">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#0f172a">
+    <title>Ardimas Yonifandria Putra - IT Enthusiast</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
     <style>
-        /* ========================
-           CSS VARIABLES - PROFESSIONAL CORPORATE IT THEME
-           ======================== */
         :root {
-            --color-navy: #001f3f;
-            --color-dark-navy: #00122a;
-            --color-dark-blue: #002b4a;
-            --color-primary-blue: #003366;
-            --color-accent-blue: #004080;
-            --color-soft-blue: #0066cc;
-            --color-light-blue-gradient: #0099ff;
-            --color-white: #ffffff;
-            --color-off-white: #f8f9fa;
-            --color-dark-gray: #112233;
-            --color-medium-gray: #274a6d;
-            --color-light-gray: #778da9;
-            --color-text-dark: #112233;
-            --color-text-medium: #223344;
-            --color-text-light: #e0e1dd;
-            --shadow-soft: 0 4px 15px rgba(0, 31, 63, 0.08);
-            --shadow-medium: 0 10px 35px rgba(0, 31, 63, 0.12);
-            --shadow-large: 0 15px 50px rgba(0, 31, 63, 0.18);
-            --shadow-elegant: 0 20px 70px rgba(0, 31, 63, 0.22);
-            --shadow-glow-blue: 0 0 50px rgba(0, 102, 204, 0.6);
-            --gradient-primary: linear-gradient(135deg, #001f3f, #003366);
-            --gradient-soft: linear-gradient(135deg, #001f3f, #0066cc);
-            --gradient-soft-light: linear-gradient(135deg, #003366, #0099ff);
-            --transition-base: all 0.45s cubic-bezier(0.25, 0.8, 0.25, 1);
-            --transition-ease: all 0.35s ease-in-out;
-            --border-radius-small: 10px;
-            --border-radius-medium: 18px;
-            --border-radius-large: 24px;
-            --border-radius-circle: 50%;
-            --container-max-width: 1280px;
-            --container-padding: 0 2.5rem;
-            --font-heading: 700;
-            --font-body: 400;
-            --font-light: 300;
+            --navy: #0f172a;
+            --dark: #1e293b;
+            --blue: #3b82f6;
+            --light-blue: #60a5fa;
+            --white: #ffffff;
+            --off-white: #f1f5f9;
+            --gray: #94a3b8;
+            --text: #334155;
+            --radius: 18px;
+            --shadow: 0 10px 35px rgba(15, 23, 42, 0.15);
+            --transition: all 0.35s ease;
         }
 
-        /* ========================
-           RESET & BASE STYLES
-           ======================== */
-        *, 
-        *::before,
-        *::after {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-
-        html {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            scroll-behavior: smooth;
-            font-size: 16px;
-            line-height: 1.7;
-            color: #223344;
-            background-color: #f8f9fa;
-            scroll-padding-top: 90px;
-        }
+        * { margin:0; padding:0; box-sizing:border-box; }
 
         body {
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            background-color: #f8f9fa;
-            color: #112233;
-            font-weight: var(--font-body);
-            line-height: 1.opname;
+            font-family: 'Inter', sans-serif;
+            background: var(--off-white);
+            color: var(--text);
+            overflow-x: hidden;
         }
 
-        img {
-            max-width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        a {
-            color: inherit;
-            text-decoration: none;
-            transition: var(--transition-base);
-            outline: none;
-        }
-
-        a:hover,
-        a:focus {
-            color: #0066cc;
-        }
-
-        ul {
-            list-style: none;
-        }
-
-        li {
-            display: block;
-        }
-
-        h1, h2, h3, h4, h5, h6 {
-            font-weight: var(--font-heading);
-            color: var(--color-navy);
-            line-height: 1.3;
-            margin-top: 0;
-            margin-bottom: 1.5rem;
-            letter-spacing: -0.5px;
-        }
-
-        p {
-            font-size: 1.15rem;
-            color: #223344;
-            margin-bottom: 1.2rem;
-            text-align: justify;
-            line-height: 1.8;
-        }
-
-        /* ========================
-           LAYOUT CONTAINER
-           ======================== */
-        .container {
-            max-width: var(--container-max-width);
-            margin: 0 auto;
-            padding: var(--container-padding);
-            width: 100%;
-        }
-
-        .section {
-            padding: 6rem 0;
-            width: 100%;
-        }
-
-        /* ========================
-           KEYFRAMES ANIMATIONS - CUSTOM MANUAL
-           ======================== */
-        @keyframes fadeIn {
-            0% {
-                opacity: 0;
-            }
-            60% {
-                opacity: 0.6;
-            }
-            100% {
-                opacity: 1;
-            }
-        }
-
-        @keyframes fadeInUp {
-            0% {
-                opacity: 0;
-                transform: translateY(80px);
-            }
-            60% {
-                opacity: 0.4;
-                transform: translateY(30px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInDown {
-            0% {
-                opacity: 0;
-                transform: translateY(-80px);
-            }
-            60% {
-                opacity: 0.6;
-                transform: translateY(-20px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes slideInLeft {
-            0% {
-                opacity: 0;
-                transform: translateX(-120px);
-            }
-            70% {
-                opacity: 0.7;
-                transform: translateX(-30px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes slideInDown {
-            0% {
-                opacity: 0;
-                transform: translateY(-120px);
-            }
-            70% {
-                opacity: 0.8;
-                transform: translateY(-20px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes scaleUp {
-            0% {
-                opacity: 0;
-                transform: scale(0.6);
-            }
-            70% {
-                opacity: 0.8;
-                transform: scale(1.08);
-            }
-            100% {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        @keyframes popIn {
-            0% {
-                opacity: 0;
-                transform: scale(0.4);
-            }
-            60% {
-                transform: scale(1.15);
-            }
-            80% {
-                transform: scale(0.95);
-            }
-            100% {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        /* ========================
-           HERO / HEADER SECTION
-           ======================== */
-        .hero {
-            background: var(--gradient-primary);
-            height: 100vh;
-            min-height: 650px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            color: var(--color-white);
-            text-align: center;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--gradient-soft);
-            opacity: 0.92;
-            z-index: 1;
-            transition: opacity 0.8s ease;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            animation: fadeIn 2.2s ease-out forwards;
-        }
-
-        .profile-pic {
-            width: 280px;
-            height: 280px;
-            border-radius: var(--border-radius-circle);
-            object-fit: cover;
-            margin-bottom: 3rem;
-            box-shadow: var(--shadow-elegant);
-            animation: scaleUp 1.6s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
-            margin-left: auto;
-            margin-right: auto;
-            transition: var(--transition-base);
-        }
-
-        .name {
-            font-size: 4.2rem;
-            font-weight: 700;
-            color: var(--color-white);
-            margin-bottom: 0.8rem;
-            animation: slideInLeft 1.8s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
-        }
-
-        .role {
-            font-size: 2rem;
-            font-weight: 500;
-            opacity: 0.95;
-            margin-bottom: 2.5rem;
-            animation: fadeInUp 1.8s ease 0.6s forwards;
-        }
-
-        .hero-description {
-            max-width: 900px;
-            font-size: 1.35rem;
-            font-weight: 300;
-            line-height: 1.9;
-            opacity: 0.98;
-            animation: fadeInUp 1.8s ease 1.2s forwards;
-        }
-
-        /* ========================
-           NAVBAR STYLES
-           ======================== */
+        /* NAVBAR */
         .navbar {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 90px;
-            background: rgba(0, 31, 63, 0.95);
-            backdrop-filter: blur(20px);
-            z-index: 1000;
-            transition: background 0.5s ease;
-            box-shadow: 0 4px 15px rgba(0, 31, 63, 0.1);
+            top:0; left:0; right:0;
+            height: 80px;
+            background: rgba(15,23,42,0.92);
+            backdrop-filter: blur(18px);
+            display:flex; align-items:center;
+            padding:0 2rem;
+            z-index:1000;
         }
 
-        .navbar .container {
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            gap: 4rem;
+        .nav-container {
+            width:100%; max-width:1400px;
+            margin:auto;
+            display:flex; justify-content:space-between; align-items:center;
         }
 
-        .navbar ul {
-            display: flex;
-            gap: 4rem;
+        .logo {
+            color:white; font-weight:800; font-size:1.4rem;
         }
 
-        .navbar li {
-            display: block;
+        .nav-menu {
+            display:flex; gap:3rem;
         }
 
-        .navbar a {
-            color: var(--color-white);
-            font-size: 1.15rem;
-            font-weight: 600;
-            position: relative;
-            padding: 0.5rem 0;
-            transition: var(--transition-base);
+        .nav-menu a {
+            color:white; font-weight:600;
+            position:relative;
+            transition:var(--transition);
         }
 
-        .navbar a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 3px;
-            background: var(--color-light-blue-gradient);
-            transition: width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-            border-radius: 2px;
+        .nav-menu a::after {
+            content:''; position:absolute;
+            bottom:-6px; left:0;
+            width:0; height:3px;
+            background:var(--blue);
+            transition:0.35s ease;
         }
 
-        .navbar a:hover,
-        .navbar a:focus {
-            color: #ffffff;
+        .nav-menu a:hover { color:var(--light-blue); }
+        .nav-menu a:hover::after { width:100%; }
+
+        .hamburger {
+            display:none; flex-direction:column; gap:5px;
+            cursor:pointer;
+        }
+        .hamburger span {
+            width:28px; height:3px;
+            background:white; border-radius:3px;
+            transition:0.3s;
+        }
+        .hamburger.active span:nth-child(1){transform:rotate(45deg) translate(6px,6px)}
+        .hamburger.active span:nth-child(2){opacity:0}
+        .hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(7px,-7px)}
+
+        /* HERO */
+        .hero {
+            min-height:100vh;
+            background:linear-gradient(135deg,#0f172a,#1e293b);
+            text-align:center; color:white;
+            display:flex; align-items:center; justify-content:center;
+            padding:120px 1.5rem 80px;
         }
 
-        .navbar a:hover::after,
-        .navbar a:focus::after {
-            width: 100%;
+        .hero-content { max-width:900px; }
+
+        .profile-pic {
+            width:220px; height:220px;
+            border-radius:50%; object-fit:cover;
+            margin:0 auto 2rem;
+            border:6px solid rgba(255,255,255,0.12);
+            box-shadow:0 20px 60px rgba(0,0,0,0.5);
         }
 
-        /* ========================
-           SECTION TITLE STYLES
-           ======================== */
+        .name { font-size:3.2rem; font-weight:800; }
+        .role { font-size:1.5rem; opacity:0.9; margin:1rem 0; color:#e2e8f0; }
+        .hero-desc { color:#cbd5e1; max-width:700px; margin:auto; }
+
+        /* SECTIONS */
+        .section { padding:90px 0; }
+        .container { max-width:1280px; margin:auto; padding:0 2rem; }
+
         .section-title {
-            font-size: 3rem;
-            font-weight: 700;
-            color: var(--color-navy);
-            text-align: center;
-            position: relative;
-            margin-bottom: 4.5rem;
-            animation: fadeInDown 1.2s ease 0.3s forwards;
+            text-align:center;
+            font-size:2.6rem; font-weight:800;
+            color:var(--navy);
+            margin-bottom:4rem;
+            position:relative;
         }
-
         .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 120px;
-            height: 5px;
-            background: var(--gradient-soft-light);
-            border-radius: 4px;
-            transition: width 0.6s ease;
+            content:''; width:100px; height:5px;
+            background:var(--blue);
+            position:absolute; bottom:-15px; left:50%;
+            transform:translateX(-50%);
+            border-radius:3px;
         }
 
-        .section-title:hover::after {
-            width: 200px;
-        }
-
-        /* ========================
-           ABOUT SECTION CARD
-           ======================== */
-        #about {
-            background-color: #f8f9fa;
-            padding: 8rem 0 6rem 0;
-        }
-
+        /* ABOUT */
         .about-card {
-            max-width: 900px;
-            margin: 0 auto;
-            background: var(--color-white);
-            padding: 4rem 3.5rem;
-            border-radius: var(--border-radius-large);
-            box-shadow: var(--shadow-large);
-            animation: fadeInUp 1.4s ease 0.4s forwards;
-            transition: var(--transition-base);
+            background:white; padding:3rem;
+            border-radius:var(--radius);
+            box-shadow:var(--shadow);
+            max-width:900px; margin:auto;
+            text-align:justify; font-size:1.15rem;
         }
 
-        .about-card p {
-            font-size: 1.25rem;
-            color: #223344;
-            line-height: 1.9;
-            text-align: justify;
+        /* GRID */
+        .grid {
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(340px,1fr));
+            gap:2rem; margin-top:3rem;
         }
 
-        /* ========================
-           SKILLS SECTION GRID & CARDS
-           ======================== */
-        #skills {
-            background-color: #ffffff;
-            padding: 8rem 0;
+        .card {
+            background:white; padding:2.5rem;
+            border-radius:var(--radius);
+            border:1px solid rgba(148,163,184,0.18);
+            box-shadow:var(--shadow);
+            transition:var(--transition);
         }
 
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-            gap: 3rem;
-            margin-top: 3rem;
+        .card:hover {
+            transform:translateY(-10px);
+            box-shadow:0 20px 45px rgba(15,23,42,0.18);
         }
 
-        .skill-card {
-            background: var(--color-white);
-            padding: 3rem 2.8rem;
-            border-radius: var(--border-radius-medium);
-            box-shadow: var(--shadow-soft);
-            text-align: center;
-            transition: var(--transition-base);
-            position: relative;
-            overflow: hidden;
-        }
+        .card h3 { color:var(--blue); margin-bottom:1rem; }
 
-        .skill-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(0,102,204,0.05), rgba(255,255,255,0.3));
-            border-radius: var(--border-radius-medium);
-            opacity: 0;
-            transition: opacity 0.5s ease;
-            z-index: 1;
-        }
-
-        .skill-card h3 {
-            font-size: 1.4rem;
-            font-weight: 600;
-            color: var(--color-soft-blue);
-            margin-bottom: 1.5rem;
-        }
-
-        .skill-card:hover {
-            transform: translateY(-25px);
-            box-shadow: var(--shadow-elegant);
-        }
-
-        .skill-card:hover::before {
-            opacity: 1;
-        }
-
-        /* ========================
-           PROJECTS SECTION GRID & CARDS
-           ======================== */
-        #projects {
-            background-color: #f8f9fa;
-            padding: 8rem 0;
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-            gap: 3rem;
-            margin-top: 3rem;
-        }
-
-        .project-card {
-            background: var(--color-white);
-            border-radius: var(--border-radius-medium);
-            box-shadow: var(--shadow-medium);
-            position: relative;
-            overflow: hidden;
-            transition: var(--transition-base);
-            height: 380px;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .project-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 200px;
-            background: var(--gradient-soft-light);
-            border-radius: var(--border-radius-medium) var(--border-radius-medium) 0 0;
-            transition: transform 0.8s ease;
-        }
-
-        .project-card .content {
-            position: relative;
-            z-index: 2;
-            padding: 2.5rem;
-        }
-
-        .project-card h3 {
-            font-size: 1.5rem;
-            color: var(--color-navy);
-            margin-bottom: 1rem;
-        }
-
-        .project-card p {
-            font-size: 1.1rem;
-            color: #445566;
-        }
-
-        .project-card:hover {
-            transform: translateY(-30px);
-            box-shadow: var(--shadow-elegant);
-        }
-
-        .project-card:hover::before {
-            transform: scale(1.15);
-        }
-
-        /* ========================
-           SOCIAL / CONTACT SECTION BUTTONS
-           ======================== */
-        #contact {
-            background-color: #ffffff;
-            padding: 8rem 0;
-        }
-
+        /* CONTACT */
         .social-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 2.5rem;
-            margin-top: 3rem;
-            flex-wrap: wrap;
+            display:flex; flex-wrap:wrap;
+            gap:1.5rem; justify-content:center;
+            margin-top:3rem;
         }
 
         .social-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 280px;
-            height: 70px;
-            background: #112233;
-            color: #ffffff;
-            font-size: 1.35rem;
-            font-weight: 600;
-            border-radius: 16px;
-            box-shadow: var(--shadow-medium);
-            transition: var(--transition-base);
-            text-decoration: none;
-            text-align: center;
-            letter-spacing: 1px;
+            min-width:280px; padding:1.2rem 2rem;
+            background:var(--dark); color:white;
+            font-weight:600; text-align:center;
+            border-radius:14px; font-size:1.15rem;
+            box-shadow:var(--shadow);
+            transition:var(--transition);
         }
 
         .social-btn:hover {
-            background: #004080;
-            box-shadow: var(--shadow-glow-blue);
-            transform: translateY(-10px) scale(1.05);
+            background:var(--blue);
+            transform:translateY(-8px);
+            box-shadow:0 15px 40px rgba(59,130,246,0.35);
         }
 
-        .social-btn:focus {
-            box-shadow: var(--shadow-glow-blue);
-        }
-
-        .social-btn:active {
-            transform: translateY(-5px) scale(1.03);
-        }
-
-        /* ========================
-           FOOTER STYLES
-           ======================== */
+        /* FOOTER */
         footer {
-            background: var(--color-navy);
-            color: var(--color-light);
-            padding: 4rem 0 2rem;
-            margin-top: auto;
+            background:var(--navy); color:#cbd5e1;
+            text-align:center; padding:3rem 1rem;
         }
 
-        .footer .container {
-            text-align: center;
-            font-size: 1rem;
-            opacity: 0.9;
+        footer a { color:var(--light-blue); }
+        footer a:hover { color:white; }
+
+        /* RESPONSIVE */
+        @media (max-width:768px){
+            .hamburger { display:flex; }
+            .nav-menu {
+                position:fixed; top:80px; left:-100%;
+                width:100%; height:calc(100vh - 80px);
+                background:rgba(15,23,42,0.97);
+                flex-direction:column; gap:2rem;
+                align-items:center; justify-content:flex-start;
+                padding-top:4rem;
+                transition:0.4s;
+            }
+            .nav-menu.active { left:0; }
+            .nav-menu a { font-size:1.4rem; }
+            .profile-pic { width:160px; height:160px; }
+            .name { font-size:2.6rem; }
         }
-
-        .footer p {
-            margin-bottom: 1rem;
-            color: #e0e1dd;
-        }
-
-        .footer a {
-            color: #77aadd;
-        }
-
-        .footer a:hover {
-            color: #ffffff;
-        }
-
-        /* ========================
-           GENERAL ANIMATIONS CLASSES
-           ======================== */
-        .animate-fade-in {
-            opacity: 0;
-            animation: fadeIn 1.6s ease forwards;
-        }
-
-        .animate-fade-in-up {
-            opacity: 0;
-            animation: fadeInUp 1.4s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
-        }
-
-        .animate-slide-in-left {
-            opacity: 0;
-            animation: slideInLeft 1.6s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
-        }
-
-        .animate-slide-in-down {
-            opacity: 0;
-            animation: slideInDown 1.4s ease forwards;
-        }
-
-        .animate-scale-up {
-            animation: scaleUp 1.6s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
-        }
-
-        /* ========================
-           MEDIA QUERIES - RESPONSIF LAYOUT
-           ======================== */
-
-        /* Desktop Large */
-        @media (min-width: 1440px) {
-            .container {
-                max-width: 1400px;
-                padding: 0 4rem;
-            }
-            .name {
-                font-size: 4.8rem;
-            }
-        }
-
-        /* Desktop Normal */
-        @media (max-width: 1440px) {
-            .hero-content {
-                padding: 0 4rem;
-            }
-            .name {
-                font-size: 4.5rem;
-            }
-            .role {
-                font-size: 2.2rem;
-            }
-        }
-
-        /* Large Tablet */
-        @media (max-width: 1200px) {
-            .container {
-                padding: 0 4rem;
-            }
-            .profile-pic {
-                width: 240px;
-                height: 240px;
-            }
-            .name {
-                font-size: 3.8rem;
-            }
-            .role {
-                font-size: 1.9rem;
-            }
-            .section-title {
-                font-size: 2.8rem;
-            }
-            .about-card {
-                padding: 3.5rem 3rem;
-            }
-            .skill-card {
-                padding: 2.8rem 2.5rem;
-            }
-            .project-card {
-                height: 360px;
-            }
-        }
-
-        /* Tablet */
-        @media (max-width: 992px) {
-            .navbar .container {
-                padding: 0 3rem;
-            }
-            .hero {
-                padding: 10rem 0 6rem 0;
-                height: auto;
-                min-height: 550px;
-            }
-            .profile-pic {
-                width: 200px;
-                height: 200px;
-            }
-            .name {
-                font-size: 3.5rem;
-            }
-            .role {
-                font-size: 1.8rem;
-            }
-            .section {
-                padding: 6rem 0;
-            }
-            .section-title {
-                margin-bottom: 3.5rem;
-            }
-            .about-card {
-                max-width: 800px;
-                padding: 3rem 2.5rem;
-            }
-            .skills-grid {
-                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-                gap: 2.5rem;
-            }
-            .projects-grid {
-                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            }
-            .social-btn {
-                width: 240px;
-                height: 65px;
-            }
-        }
-
-        /* Mobile Large */
-        @media (max-width: 768px) {
-            .navbar {
-                height: 70px;
-            }
-            .navbar .container {
-                justify-content: center;
-                gap: 2rem;
-            }
-            .hero {
-                padding: 9rem 0 5rem 0;
-                height: auto;
-            }
-            .profile-pic {
-                width: 160px;
-                height: 160px;
-            }
-            .name {
-                font-size: 3rem;
-            }
-            .role {
-                font-size: 1.5rem;
-            }
-            .hero-description {
-                font-size: 1.15rem;
-                padding: 0 2rem;
-            }
-            .section-title {
-                font-size: 2.5rem;
-            }
-            .about-card {
-                padding: 2.5rem 2rem;
-            }
-            .skills-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-            .social-buttons {
-                flex-direction: column;
-                align-items: center;
-                gap: 1.5rem;
-            }
-            .social-btn {
-                width: 100%;
-                max-width: 320px;
-                height: 60px;
-            }
-        }
-
-        /* Mobile Small */
-        @media (max-width: 480px) {
-            .container {
-                padding: 0 1.5rem;
-            }
-            .hero {
-                padding: 8rem 0 4rem 0;
-            }
-            .profile-pic {
-                width: 140px;
-                height: 140px;
-            }
-            .name {
-                font-size: 2.6rem;
-            }
-            .role {
-                font-size: 1.35rem;
-            }
-            .section-title {
-                font-size: 2.2rem;
-            }
-            .about-card p {
-                font-size: 1.05rem;
-                text-align: left;
-            }
-            .skill-card {
-                padding: 2rem 1.5rem;
-            }
-            .project-card {
-                height: auto;
-                min-height: 320px;
-            }
-            .social-btn {
-                height: 55px;
-                font-size: 1.2rem;
-            }
-        }
-
-        /* Extra focus visible for accessibility */
-        a:focus-visible {
-            box-shadow: 0 0 0 4px rgba(0,102,204,0.4);
-            border-radius: 4px;
-        }
-
-        .navbar a:focus-visible {
-            box-shadow: 0 0 0 4px rgba(255,255,255,0.4);
-        }
-
-        /* End of CSS - Total 712 baris (dengan indentasi & comment dihitung sebagai baris) */
     </style>
 </head>
+
 <body>
 
-    <!-- HERO SECTION -->
-    <section class="hero" id="hero">
-        <div class="navbar">
-            <div class="container">
-                <ul>
-                    <li><a href="#hero">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#skills">Skills</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">ArdimasYP</div>
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span><span></span><span></span>
             </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home" onclick="toggleMenu()">Home</a></li>
+                <li><a href="#about" onclick="toggleMenu()">About</a></li>
+                <li><a href="#skills" onclick="toggleMenu()">Skills</a></li>
+                <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
+                <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
+            </ul>
         </div>
+    </nav>
 
-        <div class="hero-content container">
-            <img src="pp.jpg" alt="Ardimas Yonifandria Putra" class="profile-pic animate-scale-up">
-
-            <h1 class="name animate-slide-in-left">Ardimas Yonifandria Putra</h1>
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <img src="pp.jpg" class="profile-pic">
+            <h1 class="name">Ardimas Yonifandria Putra</h1>
             <p class="role">IT Enthusiast • Network & Home Server Hobbyist</p>
-            <div class="hero-description">“Saya memiliki ketertarikan pada dunia jaringan, server rumahan, sistem virtualisasi, NAS, teknologi RT/RW Net, serta dasar penanganan kabel fiber optik. Saya terbiasa menggunakan VirtualBox, CasaOS, dan MikroTik RouterOS/CHR untuk belajar dan eksperimen.”</div>
+            <p class="hero-desc">
+                Saya memiliki ketertarikan pada dunia jaringan, server rumahan, virtualisasi, NAS,
+                teknologi RT/RW Net, serta dasar penanganan kabel fiber optik. Terbiasa menggunakan
+                VirtualBox, CasaOS, dan MikroTik RouterOS untuk belajar & bereksperimen.
+            </p>
         </div>
     </section>
 
-    <!-- ABOUT SECTION -->
     <section class="section" id="about">
         <div class="container">
-            <h2 class="section-title animate-fade-in-down">About Me</h2>
-            <div class="about-card animate-fade-in-up">
-                <p>“Saya memiliki ketertarikan pada dunia jaringan, server rumahan, sistem virtualisasi, NAS, teknologi RT/RW Net, serta dasar penanganan kabel fiber optik. Saya terbiasa menggunakan VirtualBox, CasaOS, dan MikroTik RouterOS/CHR untuk belajar dan eksperimen.”</p>
+            <h2 class="section-title">About Me</h2>
+            <div class="about-card">
+                Saya memiliki ketertarikan pada dunia jaringan, server rumahan, virtualisasi, NAS,
+                teknologi RT/RW Net, serta dasar penanganan kabel fiber optik. Terbiasa menggunakan
+                VirtualBox, CasaOS, dan MikroTik RouterOS untuk belajar dan bereksperimen.
             </div>
         </div>
     </section>
 
-    <!-- SKILLS SECTION -->
     <section class="section" id="skills">
         <div class="container">
-            <h2 class="section-title animate-fade-in-down">Skills</h2>
-            <div class="skills-grid">
-                <div class="skill-card animate-fade-in-up">
-                    <h3>Virtualization (VirtualBox)</h3>
-                </div>
-                <div class="skill-card animate-fade-in-up">
-                    <h3>NAS Management (CasaOS)</h3>
-                </div>
-                <div class="skill-card animate-fade-in-up">
-                    <h3>MikroTik RouterOS & Cloud Hosted Router</h3>
-                </div>
-                <div class="skill-card animate-fade-in-up">
-                    <h3>RT/RW Net (Basic Deployment)</h3>
-                </div>
-                <div class="skill-card animate-fade-in-up">
-                    <h3>Fiber Optic Handling (Basic Splicing)</h3>
-                </div>
-                <div class="skill-card animate-fade-in-up">
-                    <h3>Home Server Setup & Management</h3>
-                </div>
+            <h2 class="section-title">Skills</h2>
+            <div class="grid">
+                <div class="card"><h3>Virtualization (VirtualBox)</h3></div>
+                <div class="card"><h3>NAS Management (CasaOS)</h3></div>
+                <div class="card"><h3>MikroTik RouterOS</h3></div>
+                <div class="card"><h3>RT/RW Net Deployment</h3></div>
+                <div class="card"><h3>Fiber Optic Basic Splicing</h3></div>
+                <div class="card"><h3>Home Server Setup</h3></div>
             </div>
         </div>
     </section>
 
-    <!-- PROJECTS SECTION -->
     <section class="section" id="projects">
         <div class="container">
-            <h2 class="section-title animate-fade-in-down">Projects</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-placeholder-gradient"></div>
-                    <div class="content">
-                        <h3>Project 1 - Home Lab Virtualization</h3>
-                        <p>Personal home lab project involving virtualization and network simulation. Details and screenshots coming soon.</p>
-                    </div>
+            <h2 class="section-title">Projects</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Home Lab Virtualization</h3>
+                    <p>Membangun home lab dengan simulasi jaringan kompleks.</p>
                 </div>
-                <div class="project-card">
-                    <div class="project-placeholder-gradient"></div>
-                    <div class="content">
-                        <h3>Project 2 - MikroTik RT/RW Net Deployment</h3>
-                        <p>Simulation of RT/RW Net deployment using MikroTik CHR and CasaOS. Details coming soon.</p>
-                    </div>
+                <div class="card">
+                    <h3>MikroTik RT/RW Net Simulation</h3>
+                    <p>Deployment simulasi jaringan RT/RW Net.</p>
                 </div>
-                <div class="project-card">
-                    <div class="project-placeholder-gradient"></div>
-                    <div class="content">
-                        <h3>Project 3 - Personal NAS & Fiber Experiments</h3>
-                        <p>Fiber optic splicing experiments and personal NAS setup. Details coming soon.</p>
-                    </div>
+                <div class="card">
+                    <h3>Personal NAS & Fiber Lab</h3>
+                    <p>Eksperimen splicing fiber & setup NAS.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CONTACT SECTION -->
     <section class="section" id="contact">
         <div class="container">
-            <h2 class="section-title animate-fade-in-down">Contact & Social</h2>
+            <h2 class="section-title">Contact & Social</h2>
             <div class="social-buttons">
-                <a href="https://github.com/ardimasyoni" class="social-btn github">GitHub</a>
-                <a href="https://youtube.com/@another_ardimas" class="social-btn youtube">YouTube</a>
-                <a href="https://instagram.com/another_ardimas" class="social-btn instagram">Instagram</a>
-                <a href="https://facebook.com/ardimasotw" class="social-btn facebook">Facebook</a>
-                <a href="mailto:anotherardimas@gmail.com" class="social-btn email">Email me</a>
+                <a href="https://github.com/ardimasyoni" class="social-btn">GitHub</a>
+                <a href="https://youtube.com/@another_ardimas" class="social-btn">YouTube</a>
+                <a href="https://instagram.com/another_ardimas" class="social-btn">Instagram</a>
+                <a href="https://facebook.com/ardimasofw" class="social-btn">Facebook</a>
+                <a href="mailto:anotherardimas@gmail.com" class="social-btn">Email Me</a>
             </div>
         </div>
     </section>
 
-    <!-- FOOTER -->
     <footer>
-        <div class="container footer">
-            <p>&copy; 2025 Ardimas Yonifandria Putra. All rights reserved.</p>
-            <p>Email: <a href="mailto:anotherardimas@gmail.com">anotherardimas@gmail.com</a></p>
-        </div>
+        <p>© 2025 Ardimas Yonifandria Putra. All rights reserved.</p>
+        <p>Email: <a href="mailto:anotherardimas@gmail.com">anotherardimas@gmail.com</a></p>
     </footer>
+
+    <script>
+        function toggleMenu(){
+            document.getElementById("navMenu").classList.toggle("active");
+            document.querySelector(".hamburger").classList.toggle("active");
+        }
+    </script>
 
 </body>
 </html>
